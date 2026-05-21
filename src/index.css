@@ -1,0 +1,478 @@
+@import "tailwindcss";
+
+:root {
+  --text-main: #212529;
+  --accent-primary: #1F2F40;
+  --accent-secondary: #C29B57;
+  --bg-main: #FBFBFB;
+  --bg-secondary: #E6E9EF;
+  --text-muted: #6B7280;
+  --border-color: #D1D5DB;
+  --card-bg: #FFFFFF;
+  --shadow-color: rgba(31, 47, 64, 0.12);
+}
+
+.dark {
+  --text-main: #F1F3F5;
+  --accent-primary: #C29B57;
+  --accent-secondary: #C29B57;
+  --bg-main: #0E1621;
+  --bg-secondary: #1A2535;
+  --text-muted: #9CA3AF;
+  --border-color: #2D3F55;
+  --card-bg: #162032;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--accent-secondary);
+}
+
+/* Theme transition */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Preserve animation transitions */
+.no-transition {
+  transition: none !important;
+}
+
+/* Smooth opacity for page sections */
+.fade-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gold glow effect */
+.gold-glow {
+  box-shadow: 0 0 20px rgba(194, 155, 87, 0.3);
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px var(--shadow-color);
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: #1F2F40;
+  color: #FBFBFB;
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.025em;
+  transition: all 0.25s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-primary:hover {
+  background-color: #2a3f56;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(31, 47, 64, 0.35);
+}
+
+.dark .btn-primary {
+  background-color: #C29B57;
+  color: #0E1621;
+}
+.dark .btn-primary:hover {
+  background-color: #d4aa6a;
+  box-shadow: 0 6px 20px rgba(194, 155, 87, 0.35);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #1F2F40;
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.025em;
+  transition: all 0.25s ease;
+  border: 2px solid #1F2F40;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-secondary:hover {
+  background-color: #1F2F40;
+  color: #FBFBFB;
+}
+.dark .btn-secondary {
+  color: #C29B57;
+  border-color: #C29B57;
+}
+.dark .btn-secondary:hover {
+  background-color: #C29B57;
+  color: #0E1621;
+}
+
+.btn-gold {
+  background-color: #C29B57;
+  color: #0E1621;
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.025em;
+  transition: all 0.25s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-gold:hover {
+  background-color: #d4aa6a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(194, 155, 87, 0.45);
+}
+
+/* Section styles */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-secondary);
+  margin-bottom: 0.5rem;
+}
+
+/* Skill card */
+.skill-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.25s ease;
+}
+.skill-card:hover {
+  border-color: var(--accent-secondary);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px var(--shadow-color);
+}
+
+/* Project card */
+.project-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px var(--shadow-color);
+  border-color: var(--accent-secondary);
+}
+
+/* Post card */
+.post-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.25s ease;
+}
+
+/* Navigation */
+.nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-main);
+  transition: color 0.2s ease;
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-secondary);
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link:hover {
+  color: var(--accent-secondary);
+}
+
+/* Three.js canvas */
+#mining-canvas {
+  border-radius: 12px;
+  cursor: grab;
+}
+#mining-canvas:active {
+  cursor: grabbing;
+}
+
+/* Chart containers */
+.chart-container {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* Morph animation section */
+.morph-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--border-color) 50%, var(--bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* SVG process flow */
+.process-node {
+  transition: all 0.3s ease;
+}
+.process-node:hover {
+  filter: drop-shadow(0 0 8px rgba(194, 155, 87, 0.6));
+}
+
+/* Tag badges */
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+  background-color: rgba(194, 155, 87, 0.15);
+  color: var(--accent-secondary);
+  border: 1px solid rgba(194, 155, 87, 0.3);
+}
+
+/* Social icons */
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  transition: all 0.25s ease;
+}
+.social-icon:hover {
+  background-color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+  transform: translateY(-2px);
+}
+
+/* Contact form */
+.form-input {
+  width: 100%;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+.form-input:focus {
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 0 3px rgba(194, 155, 87, 0.15);
+}
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Particle animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.float-anim {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Page header gradient */
+.hero-gradient {
+  background: linear-gradient(135deg, rgba(14, 22, 33, 0.92) 0%, rgba(31, 47, 64, 0.85) 50%, rgba(14, 22, 33, 0.75) 100%);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .fade-section {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Horizontal scroll tabs */
+.category-tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 0.25rem;
+}
+.category-tabs::-webkit-scrollbar { display: none; }
+
+.category-tab {
+  white-space: nowrap;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1.5px solid var(--border-color);
+  color: var(--text-muted);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.category-tab:hover {
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
+}
+.category-tab.active {
+  background-color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+  color: #0E1621;
+}
+
+/* Image grid */
+.image-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.image-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; }
+
+/* Admin specific styles */
+.admin-sidebar {
+  background-color: var(--accent-primary);
+  min-height: 100vh;
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  color: rgba(255,255,255,0.75);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.admin-nav-item:hover,
+.admin-nav-item.active {
+  background-color: rgba(194, 155, 87, 0.2);
+  color: #C29B57;
+}
+.dark .admin-sidebar {
+  background-color: #162032;
+}
+
+.admin-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+.tooltip:hover .tooltip-text {
+  opacity: 1;
+  visibility: visible;
+}
+.tooltip-text {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent-primary);
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  margin-bottom: 6px;
+}
+.dark .tooltip-text {
+  background-color: var(--accent-secondary);
+  color: #0E1621;
+}

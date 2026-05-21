@@ -1,0 +1,11 @@
+name = "portfolio-api"
+main = "worker.ts"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "00fc67d432e545b3ab6d8556b5e4a123"
+
+[[kv_namespaces]]
+binding = "CACHE_KV"
+id = "acceea3f775f4178b570c272d1e6caf8"
