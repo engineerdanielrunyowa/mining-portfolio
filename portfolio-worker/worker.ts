@@ -400,12 +400,18 @@ async function handleGetProfile(env: Env): Promise<Response> {
   if (cached) return jsonResponse(JSON.parse(cached));
 
   const rows = await sheetsGet(env, 'Profile!A:V');
+  const profile = rowsToProfile(rows);
 
-// TEMP DEBUG
-return jsonResponse({
-  rowCount: rows.length,
-  rows: rows
-});
+  if (!profile) return errorResponse('Profile not found', 404);
+
+  await env.CACHE_KV.put(
+    cacheKey,
+    JSON.stringify(profile),
+    { expirationTtl: 300 }
+  );
+
+  return jsonResponse(profile);
+}
 
   await env.CACHE_KV.put(cacheKey, JSON.stringify(profile), { expirationTtl: 300 }); // 5 min cache
   return jsonResponse(profile);
